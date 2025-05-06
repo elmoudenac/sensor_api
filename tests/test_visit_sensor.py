@@ -4,41 +4,13 @@ from datetime import date
 
 
 class TestVisitSensor(unittest.TestCase):
-    def test_monday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025,4,21))
+    def test_weekdays_open(self):
+        for test_day in range(21,27):
+            with self.subTest(i=test_day):
+                visit_sensor = VisitSensor(1200, 300)
+                visit_count = visit_sensor.simulate_visit_count(date(2025,4,test_day))
+                self.assertFalse(visit_count == -1)
 
-        self.assertFalse(visit_count == -1)
-
-    def test_tuesday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025,4,22))
-
-        self.assertFalse(visit_count == -1)
-
-    def test_wednesday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025, 4, 23))
-
-        self.assertFalse(visit_count == -1)
-
-    def test_thursday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025, 4, 24))
-
-        self.assertFalse(visit_count == -1)
-
-    def test_friday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025, 4, 25))
-
-        self.assertFalse(visit_count == -1)
-
-    def test_saturday_open(self):
-        visit_sensor = VisitSensor(1200, 300)
-        visit_count = visit_sensor.simulate_visit_count(date(2025, 4, 26))
-
-        self.assertFalse(visit_count == -1)
 
     def test_sunday_closed(self):
         visit_sensor = VisitSensor(1200, 300)
