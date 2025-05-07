@@ -38,3 +38,20 @@ class StoreSensor:
             )
 
             self.sensors.append(sensor)
+
+    def get_sensor_traffic(self, sensor_id: int, business_date: date) -> int:
+        """Return the traffic for one sensor at a date"""
+        return self.sensors[sensor_id].get_visit_count(business_date)
+
+    def get_all_traffic(self, business_date: date) -> int:
+        """Return the traffic for all sensors of the store at a date"""
+        visit = 0
+        for i in range(8):
+            visit += self.sensors[i].get_visit_count(business_date)
+        return visit
+
+if __name__ == "__main__":
+    lille_store = StoreSensor("lille",1200,300)
+    visits = lille_store.get_all_traffic(date(2023,9,13))
+    print(visits)
+    print(lille_store.get_sensor_traffic(3,date(2023,9,13)))
